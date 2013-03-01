@@ -15,11 +15,12 @@ appIni = {	"mCompanyName"		: "TBDCompany",
 import Pycap as PC
 PCR = None
 
-# some temporary globals that refer to key data
-KEYLEFT		= 37
-KEYRIGHT	= 39
-KEYUP		= 38
-KEYDOWN		= 40
+# various key codes and key state variables
+# key names refer to direction, not actual key
+KEYLEFT		= 65
+KEYRIGHT	= 68
+KEYUP		= 87
+KEYDOWN		= 83
 
 leftDown = 0
 rightDown = 0
