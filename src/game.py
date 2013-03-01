@@ -91,9 +91,7 @@ def keyDown(key):
 		upDown = 1
 	elif key == KEYDOWN:
 		global downDown
-		downDown = 1
-	
-	print key  
+		downDown = 1 
 
 def keyUp(key):
         if key == KEYLEFT:
