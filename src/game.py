@@ -13,6 +13,7 @@ appIni = {	"mCompanyName"		: "TBDCompany",
 		"mVSyncUpdates"	: 1 }
 
 import Pycap as PC
+import math
 PCR = None
 
 # various key codes and key state variables
@@ -29,21 +30,22 @@ downDown = 0
 
 # player class
 class Player:
-        def __init__(self, x, y):
-                # store variables x and y as initial location
-                self.x = x
-                self.y = y
+	def __init__(self, x, y):
+		# store variables x and y as initial location
+		self.x = x
+		self.y = y
 
         def update(self, delta):
-                # change x and y positions based on whether keys are pressed
-                dx = (rightDown - leftDown) * 2
-                dy = (downDown - upDown) * 2
-
-                self.x += dx * delta
-                self.y += dy * delta
+			# change x and y positions based on whether keys are pressed
+			dx = (rightDown - leftDown) * 2
+			dy = (downDown - upDown) * 2
+				
+			self.angle = (math.atan((mouseY - self.y) / (mouseX - self.x))*-1)+(math.pi/-2)
+			self.x += dx * delta
+			self.y += dy * delta
 
         def draw(self):
-                PC.drawImageF(self.image, self.x - self.width * 0.5, self.y - self.height * 0.5)
+			PC.drawImageRotF(self.image, self.x - self.width * 0.5, self.y - self.height * 0.5,self.angle)
 
 def loadBase():
 	import PycapRes
@@ -80,7 +82,7 @@ def draw():
         player.draw()
 
 def keyDown(key):
-        if key == KEYLEFT:
+	if key == KEYLEFT:
 		global leftDown
 		leftDown = 1
 	elif key == KEYRIGHT:
@@ -106,3 +108,9 @@ def keyUp(key):
 	elif key == KEYDOWN:
 		global downDown
 		downDown = 0
+		
+def mouseMove(x, y):
+	global mouseX
+	global mouseY
+	mouseX = x
+	mouseY = y
