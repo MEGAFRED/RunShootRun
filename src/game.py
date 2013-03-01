@@ -39,13 +39,24 @@ class Player:
 			# change x and y positions based on whether keys are pressed
 			dx = (rightDown - leftDown) * 2
 			dy = (downDown - upDown) * 2
+			mdx = (mouseX - self.x)
+			mdy = (mouseY - self.y)
+			
+			if(mdx > 0):
+				self.angle = math.atan(mdy / mdx) * -1
+			elif(mdx < 0):
+				self.angle = math.atan(mdy*-1 / mdx) + math.pi
+			else:
+				if(mdy < 0):
+					self.angle = math.pi / 2
+				elif(mdy > 0):
+					self.angle = math.pi * 1.5
 				
-			self.angle = (math.atan((mouseY - self.y) / (mouseX - self.x))*-1)+(math.pi/-2)
 			self.x += dx * delta
 			self.y += dy * delta
 
         def draw(self):
-			PC.drawImageRotF(self.image, self.x - self.width * 0.5, self.y - self.height * 0.5,self.angle)
+			PC.drawImageRotF(self.image, self.x - self.width * 0.5, self.y - self.height * 0.5,self.angle - math.pi / 2)
 
 def loadBase():
 	import PycapRes
@@ -58,13 +69,16 @@ def loadBase():
 	Player.height = PCR.imageHeight(Player.image)
 
 def init():
-        # retrieve width and height values from appIni
-        global screenWidth
-        global screenHeight
-        screenWidth = appIni["mWidth"]
-        screenHeight = appIni["mHeight"]
-        
-        # initialize the player
+	# retrieve width and height values from appIni
+	global screenWidth
+	global screenHeight
+	screenWidth = appIni["mWidth"]
+	screenHeight = appIni["mHeight"]
+		
+	# initialize mouse position by calling mouseMove
+	mouseMove(0, 0)
+		
+	# initialize the player
 	global player
 	player = Player(100, 100)
 
@@ -74,12 +88,12 @@ def update( delta ):
 	player.update(delta)
 
 def draw():
-        # make a white screen to initialize the framebuffer
-        PC.setColour(255, 255, 255, 255)
-        PC.fillRect(0, 0, screenWidth, screenHeight);
+	# make a white screen to initialize the framebuffer
+	PC.setColour(255, 255, 255, 255)
+	PC.fillRect(0, 0, screenWidth, screenHeight);
 
-        #draw the player
-        player.draw()
+	#draw the player
+	player.draw()
 
 def keyDown(key):
 	if key == KEYLEFT:

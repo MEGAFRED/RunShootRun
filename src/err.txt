@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "C:\Documents and Settings\Owner\My Documents\GitHub\RunShootRun\src\game.py", line 74, in update
-    player.update(delta)
-  File "C:\Documents and Settings\Owner\My Documents\GitHub\RunShootRun\src\game.py", line 43, in update
-    self.angle = (math.atan((mouseY - self.y) / (mouseX - self.x))*-1)+(math.pi/-2)
-ZeroDivisionError: float division
