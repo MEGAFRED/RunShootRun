@@ -36,9 +36,10 @@ class Player:
 		self.y = y
 
         def update(self, delta):
-			# change x and y positions based on whether keys are pressed
-			dx = (rightDown - leftDown) * 2
-			dy = (downDown - upDown) * 2
+			# set modifiers for relative x and y location
+			ds = (rightDown - leftDown) * 2
+			df = (downDown - upDown) * 2
+			
 			mdx = (mouseX - self.x)
 			mdy = (mouseY - self.y)
 			
@@ -51,10 +52,12 @@ class Player:
 					self.angle = math.pi / 2
 				elif(mdy > 0):
 					self.angle = math.pi * 1.5
-				
-			self.x += dx * delta
-			self.y += dy * delta
-
+			
+			# change actual x and y locations based on relative position modifiers
+			# and angle
+			self.x += math.cos(self.angle)*df
+			self.y += math.sin(self.angle)*df
+			
         def draw(self):
 			PC.drawImageRotF(self.image, self.x - self.width * 0.5, self.y - self.height * 0.5,self.angle - math.pi / 2)
 
@@ -67,7 +70,11 @@ def loadBase():
 	Player.image = PCR.loadImage("Res\\BetaMan.png")
 	Player.width = PCR.imageWidth(Player.image)
 	Player.height = PCR.imageHeight(Player.image)
-
+	
+	# load the game font
+	global gameFont
+	gameFont = PCR.loadFont("Res\\Fonts\\LCDSolid20.txt")
+	
 def init():
 	# retrieve width and height values from appIni
 	global screenWidth
@@ -76,11 +83,13 @@ def init():
 	screenHeight = appIni["mHeight"]
 		
 	# initialize mouse position by calling mouseMove
-	mouseMove(0, 0)
+	mouseMove(0, 100)
 		
 	# initialize the player
 	global player
-	player = Player(100, 100)
+	player = Player(100, 100) 
+	
+	
 
 def update( delta ):
 	PC.markDirty()
@@ -88,12 +97,19 @@ def update( delta ):
 	player.update(delta)
 
 def draw():
+	# set the game font
+	PC.setFont(gameFont)
+	
 	# make a white screen to initialize the framebuffer
 	PC.setColour(255, 255, 255, 255)
 	PC.fillRect(0, 0, screenWidth, screenHeight);
 
-	#draw the player
+	# draw the player
 	player.draw()
+	
+	# display the player's angle for debugging purposes
+	PC.setColour(0, 0, 0, 255)
+	PC.drawString(str(player.angle), 5, 25)
 
 def keyDown(key):
 	if key == KEYLEFT:

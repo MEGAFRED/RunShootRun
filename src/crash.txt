@@ -1,0 +1,24 @@
+Exception: Access Violation (code 0xc0000005) at address 004B4D8B in thread 1628
+Module: RunShootRun.exe
+Logical Address: 0001:000B3D8B
+
+0018FAA4 004B4D8B 0001:000B3D8B RunShootRun.exe
+Params: 0290CDB0 02902E00 EBB1BFF8 00000000
+
+StackWalk failed (error 299)
+
+EAX:01EC0FE8 EBX:00000000 ECX:BCD7E8A7 EDX:00000000 ESI:0290F418 EDI:004B4D40
+EIP:004B4D8B ESP:0018FA94  EBP:0292EA50
+CS:0023 SS:002B DS:002B ES:002B FS:0053 GS:002B
+Flags:00010202
+
+Windows Ver: NT 6.1  Build 7600
+DDraw Ver: 6.1.7600.16385
+DSound Ver: 6.1.7600.16385
+
+Product: RunShootRun
+Version: 0.0.1
+Time Loaded: 00:00:02
+Fullscreen: No
+Primary ThreadId: 1628
+
