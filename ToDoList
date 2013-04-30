@@ -1,4 +1,4 @@
-This is a list of things that need to be acomplished at some point throughout the project. They are not nessisarily in order at this point in time. To view completed tasks see the changelog.
+This is a list of things that need to be acomplished at some point throughout the project. They are not nessisarily in order at this point in time. To view completed tasks see the changelog. If you bash me for spelling I will tear your amrs off.
 
 #Create changelog
 #Create item  system
@@ -6,6 +6,15 @@ This is a list of things that need to be acomplished at some point throughout th
 	#Each item can be added by editing the template script and adding a sprite
 	#Script that lists all items and rarity to be used by the post-game item generator
 	#Outline for template script allows easy editing (Variables such as "itemType", "trueDmg" for use in 			 
-   other scripts as "bigSword.trueDmg")
-#Continue list from here
-	
+   	 other scripts as "bigSword.trueDmg")
+#Determine Items for first build
+#Review tile system functions and nessisary engine assets
+#Sketch map layout for at least 2 maps
+#Create Art Assets
+	#First build items
+	#Menus
+	#In-game player art
+	#Tiles for maps
+#Discuss possible site for promotion of game
+	#Create accounts (adf.ly, weebly, Google AdSense)
+	#Organize game awareness events
